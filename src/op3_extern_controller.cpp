@@ -14,6 +14,9 @@
 #include <webots/Accelerometer.hpp>
 #include <webots/InertialUnit.hpp>
 
+namespace robotis_op
+{
+
 struct gains
 {
   double p_gain;
@@ -38,6 +41,8 @@ std::string webots_joint_names[20] = {
 };
 
 gains joint_gains[20];
+
+}
 
 using namespace std;
 using namespace robotis_op;
@@ -64,6 +69,7 @@ OP3ExternController::OP3ExternController() : Node("op3_webots_extern_controller"
     previous_com_m_[i]      = 0;
     current_com_vel_mps_[i] = 0;
   }  
+
 }
 
 OP3ExternController::~OP3ExternController()
@@ -333,6 +339,9 @@ void OP3ExternController::stepWebots() {
 
 bool OP3ExternController::parsePIDGainYAML(std::string gain_file_path)
 {
+  if (gain_file_path == "")
+    return false;
+
   YAML::Node doc;
 
   try

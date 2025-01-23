@@ -25,9 +25,7 @@ def generate_launch_description():
         package='op3_webots_ros2',
         executable='op3_extern_controller',
         output='screen',
-        parameters=[{'gain_file_path':gain_file_path_default
-
-        }]
+        parameters=[{'gain_file_path': gain_file_path_default}]
     ))
 
     return ld
